@@ -1,13 +1,11 @@
 var Color = function(r, g, b) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
+    this.vals = [r,g,b];
 }
 
 Color.prototype.dist2 = function(other) {
-    return ((this.r-other.r)*(this.r-other.r) +
-            (this.g-other.g)*(this.g-other.g) +
-            (this.b-other.b)*(this.b-other.b));
+    return ((this.vals[0]-other.vals[0])*(this.vals[0]-other.vals[0]) +
+            (this.vals[1]-other.vals[1])*(this.vals[1]-other.vals[1]) +
+            (this.vals[2]-other.vals[2])*(this.vals[2]-other.vals[2]));
 }
 
 function gen_palette(n_colors) {

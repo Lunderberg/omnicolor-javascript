@@ -28,7 +28,8 @@ GrowthImage.prototype.clear_image = function() {
 GrowthImage.prototype.iterate = function() {
     var target = this.target_color(this.i, this.j);
     var color = this.kdtree.PopClosest(target, 1);
-    this.set_pixel(this.i, this.j, color.r, color.g, color.b, 255);
+    this.set_pixel(this.i, this.j,
+                   color.vals[0], color.vals[1], color.vals[2], 255);
 
     this.i++;
     if(this.i >= this.width){
