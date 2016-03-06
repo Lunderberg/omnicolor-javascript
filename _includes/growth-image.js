@@ -1,4 +1,5 @@
 {% include gen-palette.js %}
+{% include gen-locations.js %}
 {% include kd-tree.js %}
 
 var GrowthImage = function(img_data) {
@@ -9,8 +10,8 @@ var GrowthImage = function(img_data) {
     this.palette = gen_palette(img_data.data.length/4);
     this.kdtree = new KDTree(this.palette);
 
-    this.i = 0;
-    this.j = 0;
+    this.location_gen = new FrontierLocationGen(this.width, this.height);
+
     this.clear_image();
 }
 
@@ -26,16 +27,12 @@ GrowthImage.prototype.clear_image = function() {
 }
 
 GrowthImage.prototype.iterate = function() {
-    var target = this.target_color(this.i, this.j);
-    var color = this.kdtree.PopClosest(target, 1);
-    this.set_pixel(this.i, this.j,
-                   color.vals[0], color.vals[1], color.vals[2], 255);
+    var point = this.location_gen.next();
 
-    this.i++;
-    if(this.i >= this.width){
-        this.j++;
-        this.i = 0;
-    }
+    var target = this.target_color(point.i, point.j);
+    var color = this.kdtree.PopClosest(target, 1);
+    this.set_pixel(point.i, point.j,
+                   color.vals[0], color.vals[1], color.vals[2], 255);
 }
 
 GrowthImage.prototype.is_done = function() {

@@ -4,7 +4,6 @@ layout: empty
 
 {% include growth-image.js %}
 
-
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
 var img_data = context.createImageData(canvas.width,canvas.height);
