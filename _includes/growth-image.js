@@ -30,7 +30,7 @@ GrowthImage.prototype.iterate = function() {
     var point = this.location_gen.next();
 
     var target = this.target_color(point.i, point.j);
-    var color = this.kdtree.PopClosest(target, 1);
+    var color = this.kdtree.PopClosest(target, 5);
     this.set_pixel(point.i, point.j,
                    color.vals[0], color.vals[1], color.vals[2], 255);
 }

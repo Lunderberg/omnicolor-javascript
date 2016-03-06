@@ -15,7 +15,7 @@ var t_end = t_start;
 var growth = new GrowthImage(img_data);
 
 function slow_iterate() {
-    for(var i=0; i<1000; i++) {
+    for(var i=0; i<3000; i++) {
         if(growth.is_done()){
             break;
         }

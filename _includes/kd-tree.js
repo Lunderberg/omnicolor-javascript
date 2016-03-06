@@ -80,8 +80,10 @@ var LeafNode = function(values) {
     this.values = values;
     this.leaves_unused = values.length;
 
-    this.used = new Array(values.length)
-    this.used.fill(false);
+    this.used = [];
+    for(var i=0; i<this.used.length; i++){
+        this.used[i] = false;
+    }
 }
 LeafNode.prototype = new NodeBase();
 LeafNode.prototype.constructor = LeafNode;

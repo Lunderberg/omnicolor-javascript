@@ -23,9 +23,12 @@ SequentialLocationGen.prototype.next = function() {
 var FrontierLocationGen = function(width, height) {
     this.width = width;
     this.height = height;
-    this.used = new Array(width*height);
-    this.used.fill(false);
     this.frontier = [];
+
+    this.used = [];
+    for(var i=0; i<width*height; i++){
+        this.used[i] = false;
+    }
 }
 
 FrontierLocationGen.prototype.next = function() {
