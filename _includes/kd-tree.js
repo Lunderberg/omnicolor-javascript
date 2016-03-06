@@ -20,10 +20,7 @@ NodeBase.prototype.PopClosest = function(query, epsilon) {
         node = node.parent;
     }
 
-    var output = result.leaf.PopValue(result.index);
-    //alert("Result color: (" + output.r + "," + output.g + "," + output.b + ")");
-
-    return output;
+    return result.leaf.PopValue(result.index);
 }
 
 NodeBase.prototype.GetClosest = function(query, epsilon) {
@@ -36,9 +33,13 @@ NodeBase.prototype.GetClosest = function(query, epsilon) {
 var InternalNode = function(left, right, dimension, median) {
     NodeBase.call(this);
     this.left = left;
+    this.left.parent = this;
     this.right = right;
+    this.right.parent = this;
+
     this.dimension = dimension;
     this.median = median;
+    this.leaves_unused = this.left.leaves_unused + this.right.leaves_unused;
 }
 InternalNode.prototype = new NodeBase();
 InternalNode.prototype.constructor = InternalNode;
